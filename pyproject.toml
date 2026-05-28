@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kubewaste"
+version = "0.1.0"
+description = "Find Kubernetes resource waste — pods over-provisioned on CPU and RAM"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Bhupendra Tale", email = "bgurjar05.bg@gmail.com" }]
+keywords = ["kubernetes", "k8s", "resource", "waste", "cost", "optimization", "devops", "cloud"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Systems Administration",
+]
+requires-python = ">=3.9"
+dependencies = ["click>=8.0"]
+
+[project.optional-dependencies]
+k8s = ["kubernetes>=28.0"]
+dev = ["pytest>=7.0", "pytest-cov", "ruff"]
+
+[project.urls]
+Homepage = "https://github.com/bhupendra05/kubewaste"
+Repository = "https://github.com/bhupendra05/kubewaste"
+
+[project.scripts]
+kubewaste = "kubewaste.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["kubewaste*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
